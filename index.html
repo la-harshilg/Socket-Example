@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket Example</title>
+</head>
+<script src="./socket.io.js"></script>
+<script>
+    const socket = io();
+    socket.on('message',(data)=>{
+        document.getElementById('heading').innerHTML = data; 
+    })
+    socket.emit('play')
+
+    socket.on('broadcast',(data)=>{
+        document.getElementById('desc').innerHTML = data.desc
+    })
+
+    socket.on('newclient',(data)=>{
+        document.getElementById('new').innerHTML = data.desc
+    })
+</script>
+<body>
+    <h3 id="heading">Hello Sockets</h3>
+    <p id="desc"></p>
+    <p id="new"></p>
+</body>
+</html>
